@@ -1,14 +1,19 @@
 import java.text.DecimalFormat
+import java.util.concurrent.TimeUnit
 import kotlin.random.Random
 
 val formatter = DecimalFormat("###.######")
 
 fun main() {
 
-    val data = prepareData(10)
-    display(data)
-    println("------------------")
+    val start = System.nanoTime()
+    val data = prepareData(100)
+    // display(data)
+    // println("------------------")
     compute(data)
+    val endTime = System.nanoTime()
+    val duration = TimeUnit.NANOSECONDS.toMillis(endTime - start)
+    println("Duration Time: $duration")
 }
 
 // get random distance
@@ -18,7 +23,6 @@ fun getRD(): Double {
 
 fun compute(graph: List<List<Route>>) {
     val distances: List<List<Route>> = graph
-
     for (k in 0 until distances.size) {
         for (i in 0 until distances.size) {
             for (j in 0 until distances.size) {
@@ -31,7 +35,7 @@ fun compute(graph: List<List<Route>>) {
         }
     }
 
-    display(distances)
+    // display(distances)
     println("----------------")
     displayRoutePath(distances)
 }
