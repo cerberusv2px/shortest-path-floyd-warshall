@@ -1,19 +1,21 @@
 import java.text.DecimalFormat
-import java.util.concurrent.TimeUnit
 import kotlin.random.Random
+import kotlin.system.measureTimeMillis
 
 val formatter = DecimalFormat("###.######")
 
 fun main() {
 
-    val start = System.nanoTime()
-    val data = prepareData(100)
-    // display(data)
-    // println("------------------")
-    compute(data)
-    val endTime = System.nanoTime()
-    val duration = TimeUnit.NANOSECONDS.toMillis(endTime - start)
-    println("Duration Time: $duration")
+    val duration = measureTimeMillis {
+        val data = prepareData(100)
+        // display(data)
+        // println("------------------")
+        compute(data)
+    }
+
+    val newD = duration / 1000.0
+
+    println("Duration Time: $newD seconds")
 }
 
 // get random distance
